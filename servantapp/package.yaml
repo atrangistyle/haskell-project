@@ -24,6 +24,7 @@ dependencies:
 - servant-server
 - text
 - warp
+- aeson
 
 ghc-options:
 - -Wall
