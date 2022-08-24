@@ -1,4 +1,4 @@
-module Main (main) where
+module Main where
 
 import Lib
 import Network.Wai.Handler.Warp (run)

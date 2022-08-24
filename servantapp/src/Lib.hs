@@ -17,12 +17,14 @@ type UserAPI1 = "health" :> Get '[JSON] Text
     :<|> "foe" :> Capture "name" Text :> Get '[JSON] Text
     :<|> "postjoe" :> ReqBody '[JSON] JoeRequestBody :> Post '[JSON] Text
     :<|> "respjoe" :> ReqBody '[JSON] JoeRequestBody :> Post '[JSON] JoeRespBody
+    :<|> "errjoe" :> ReqBody '[JSON] JoeRequestBody :> Post '[JSON] JoeRespBody
+
 
 data JoeRequestBody = 
   JoeRequestBody 
     { name :: Text
     }
-  deriving (Eq, Show, Generic, FromJSON)
+  deriving (Eq, Show, Generic, FromJSON, ToJSON)
 
 data JoeRespBody = 
   JoeRespBody 
@@ -36,6 +38,7 @@ server1 = return "UP"
     :<|> foeHandler
     :<|> postjoeHandler
     :<|> respjoeHandler
+    :<|> errjoeHandler
     
  
 joeHandler :: Maybe Text -> Handler Text
@@ -60,6 +63,12 @@ respjoeHandler :: JoeRequestBody -> Handler JoeRespBody
 respjoeHandler req = if name req == "jyoti"
                        then return $ JoeRespBody {resp_name  = "pathak"}
                        else return $ JoeRespBody {resp_name  = "wrong name"}
+
+errjoeHandler :: JoeRequestBody -> Handler JoeRespBody
+errjoeHandler req = if name req == "jyoti"
+                       then return $ JoeRespBody {resp_name  = "pathak"}
+                       else throwError $ err500 { errBody = "Your request makes no sense to me." }
+ 
 
 userAPI :: Proxy UserAPI1
 userAPI = Proxy

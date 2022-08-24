@@ -26,6 +26,7 @@ dependencies:
 - warp
 - aeson
 
+
 ghc-options:
 - -Wall
 - -Wcompat
@@ -61,4 +62,10 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - servantapp
+    - hspec
+    - hspec-wai
+    - servant-client
+    - http-client
+    - wai
+    - http-types
 
