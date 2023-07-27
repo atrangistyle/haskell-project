@@ -25,7 +25,10 @@ dependencies:
 - text
 - warp
 - aeson
-
+- beam-core
+# - beam-mysql
+- beam-postgres
+- uuid
 
 ghc-options:
 - -Wall

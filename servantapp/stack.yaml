@@ -17,8 +17,8 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver:
-  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/19/19.yaml
+resolver: lts-16.16
+  # url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/19/19.yaml
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -65,3 +65,31 @@ packages:
 #
 # Allow a newer minor version of GHC than the snapshot specifies
 # compiler-check: newer-minor
+allow-newer: true
+extra-deps : 
+  - git: https://github.com/juspay/beam-mysql
+    commit: 4c876ea2eae60bf3402d6f5c1ecb60a386fe3ace
+  - git: https://github.com/juspay/beam
+    commit: 27c079764c290025095c8783674d635ca616499e
+    subdirs:
+      - beam-core
+      - beam-migrate
+      - beam-sqlite
+      - beam-postgres
+  - git: https://github.com/juspay/mysql-haskell
+    commit: 788022d65538db422b02ecc0be138b862d2e5cee
+  - servant-0.18.1
+  - servant-mock-0.8.7
+  - servant-server-0.18.1
+  - servant-client-0.18.1
+  - servant-client-core-0.18.1
+  - mason-0.2.3@sha256:186ff6306c7d44dbf7b108b87f73a30d45c70cd5c87d6f2a88d300def5542fef,1226
+  - tcp-streams-1.0.1.1@sha256:35e9ecfa515797052f8c3c01834d2daebd5e93f3152c7fc98b32652bf6f0c052,2329
+  - wire-streams-0.1.1.0@sha256:08816c7fa53b20f52e5c465252c106d9de8e6d9580ec0b6d9f000a34c7bcefc8,2130
+  - dependent-map-0.4.0.0@sha256:ca2b131046f4340a1c35d138c5a003fe4a5be96b14efc26291ed35fd08c62221,1657
+  - dependent-sum-0.7.1.0@sha256:2943074c14ba06401d5bf47aeb71ed3a3f68da4d3db3ae4ca9ac02f35458fc34,2147
+  - constraints-extras-0.3.2.1@sha256:90488db4db9ddfe1804805b774cc189bc36ec3d2ac59d751c6078c4a6996036f,1788
+  - haskell-src-exts-1.21.1@sha256:11d18ec3f463185f81b7819376b532e3087f8192cffc629aac5c9eec88897b35,4541
+
+
+  
